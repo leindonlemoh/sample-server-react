@@ -4,10 +4,10 @@ const dotenv = require("dotenv");
 const path = require("path");
 const cors = require("cors");
 
-const port = 3001;
 const hostname = "localhost";
 
 dotenv.config({ path: "./.env" });
+const port = process.env.PORT;
 
 const app = express();
 
@@ -28,7 +28,7 @@ const db = mysql.createConnection({
 //  /users/register
 app.use("/users", require("./routes/user"));
 
-app.listen(port, hostname, () => {
+app.listen(port, () => {
   console.log("Server started");
   db.connect((err) => {
     if (err) {
